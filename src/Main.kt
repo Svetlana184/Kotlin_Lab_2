@@ -16,7 +16,7 @@ fun numOrder(n:Int = 4):IntArray{
             number+=count*j;
             count/=10;
         }
-        array.set(i,number.toInt());
+        array.set(i-1,number.toInt());
     }
     return array
 }
