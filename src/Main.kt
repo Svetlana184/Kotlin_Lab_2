@@ -7,16 +7,25 @@ fun main() {
     for (i in array) {
         println(i)}
 }
-fun numOrder(n:Int = 4):IntArray{
-    var array = IntArray(10-n)
-    for(i in 1..<10-n){
-        var count = Math.pow(10.0, n.toDouble());
-        var number = i*count;
-        for(j in i..9){
-            number+=count*j;
-            count/=10;
+fun numOrder(n:Int = 4): IntArray{
+    fun modifyNum(number:Int, n: Int): Int {
+        var counter = Math.pow(10.0, n - 1.toDouble())
+        var modifyNumber = 0.0
+        for (j in number..9) {
+            if (counter < 1.0) break
+            else {
+                modifyNumber += j * counter
+                counter /= 10
+
+            }
         }
-        array.set(i-1,number.toInt());
+        return modifyNumber.toInt()
+    }
+    var array = IntArray(10-n)
+    for(i in 1..10-n){
+        var element = modifyNum(i, n)
+        array.set(i-1,element);
     }
     return array
+
 }
