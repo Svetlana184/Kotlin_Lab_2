@@ -14,21 +14,69 @@
 
 fun main(){
     //1
+    var rezult = "yes"
     var chest_list = mutableListOf<Chest>()
     for (i in 0..7){
-        println("введите строку $i ферзя")
+        println("введите строку ${i+1} ферзя")
         var x = readln().toInt()
-        println("введите столбец $i ферзя")
+        println("введите столбец ${i+1} ферзя")
         var y = readln().toInt()
-        chest_list.set(i, Chest(x,y))
+        chest_list.add(i, Chest(x,y))
     }
 
     val set_chest = chest_list.toSet()
     if (set_chest.count() != chest_list.count())
-        println("NO")
+        rezult = "no"
     else{
-        println("YES")
+        for(chest_piece in chest_list) {
+            var cancel_list = mutableListOf<Chest>()
+            var x = chest_piece.x
+            var y = chest_piece.y
+            while (x > 2 && x < 7 && y > 2 && y < 7) {
+                x -= 1
+                y -= 1
+                cancel_list.add(Chest(x, y))
+            }
+            x = chest_piece.x
+            y = chest_piece.y
+            while (x > 2 && x < 7 && y > 2 && y < 7) {
+                x += 1
+                y += 1
+                cancel_list.add(Chest(x, y))
+            }
+            x = chest_piece.x
+            y = chest_piece.y
+            while (x > 2 && x < 7 && y > 2 && y < 7) {
+                x += 1
+                y -= 1
+                cancel_list.add(Chest(x, y))
+            }
+            x = chest_piece.x
+            y = chest_piece.y
+            while (x > 2 && x < 7 && y > 2 && y < 7) {
+                x -= 1
+                y += 1
+                cancel_list.add(Chest(x, y))
+            }
+            x = chest_piece.x
+            y = chest_piece.y
+            for (i in 0..7) {
+                cancel_list.add(Chest(x, i))
+                cancel_list.add(Chest(i, y))
+            }
+            for (chest_check in chest_list) {
+                if (chest_check != chest_piece) {
+                    if (cancel_list.contains(chest_check)) {
+                        rezult = "no"
+                        break;
+                    }
+                }
+            }
+        }
     }
+    println(rezult)
+
+
 
     //2
     var list_random : MutableList<Int> = mutableListOf()
@@ -40,6 +88,9 @@ fun main(){
     val set = list_random.toSet()
     println(set)
     println()
+
+
+
 
     //3
     val list_keys = mutableListOf<Int>(1,2,3,4,5)
