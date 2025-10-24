@@ -17,9 +17,9 @@ fun main(){
     var rezult = "yes"
     var chest_list = mutableListOf<Chest>()
     for (i in 0..7){
-        println("введите строку ${i+1} ферзя")
+        println("введите строку ${i+1} ферзя (число от 1 до 8)")
         var x = readln().toInt()
-        println("введите столбец ${i+1} ферзя")
+        println("введите столбец ${i+1} ферзя  (число от 1 до 8)")
         var y = readln().toInt()
         chest_list.add(i, Chest(x,y))
     }
