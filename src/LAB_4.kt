@@ -5,13 +5,14 @@
 //  - clear() - очистить контейнер
 //  - isEmpty(): Boolean - проверка на пустоту
 
-//class Container<T>(var item:T){
-//
-//    fun getItem() {
-//        println(item)
-//    }
+class Container<T>(var item:T){
+
+    fun getItem() {
+        println(item)
+    }
 //    fun clearItem(){
-//        item=null
+//        item = <T>();
 //    }
-//
-//}
+
+
+}
